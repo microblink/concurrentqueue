@@ -14,11 +14,11 @@ class ConcurrentqueueConan(ConanFile):
         "revision": "auto"
     }
     no_copy_source = True
-    export_sources = "*.h"
-
 
     def package(self):
-        self.copy("*.h", dst="include")
+        self.copy("internal/*.h", dst="include")
+        self.copy("concurrentqueue.h", dst="include")
+        self.copy("blockingconcurrentqueue.h", dst="include")
 
     def package_id(self):
         self.info.header_only()
