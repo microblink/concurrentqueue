@@ -2349,6 +2349,9 @@ private:
 		
 		
 		bool new_block_index(size_t numberOfFilledSlotsToExpose)
+		#ifdef __clang__
+			__attribute__((no_sanitize("unsigned-integer-overflow")))
+		#endif
 		{
 			auto prevBlockSizeMask = pr_blockIndexSize - 1;
 			
