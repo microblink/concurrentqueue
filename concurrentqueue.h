@@ -1776,6 +1776,9 @@ private:
 		}
 		
 		~ExplicitProducer()
+		#ifdef __clang__
+			__attribute__((no_sanitize("unsigned-integer-overflow")))
+		#endif
 		{
 			// Destruct any elements not yet dequeued.
 			// Since we're in the destructor, we can assume all elements
