@@ -1951,6 +1951,10 @@ private:
 		
 		template<typename U>
 		bool dequeue(U& element)
+		#ifdef __clang__
+			__attribute__((no_sanitize("unsigned-integer-overflow")))
+			__attribute__((no_sanitize("implicit-integer-sign-change")))
+		#endif
 		{
 			auto tail = this->tailIndex.load(std::memory_order_relaxed);
 			auto overcommit = this->dequeueOvercommit.load(std::memory_order_relaxed);
